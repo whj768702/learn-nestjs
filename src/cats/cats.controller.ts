@@ -6,16 +6,19 @@ import {
   Patch,
   Param,
   Delete,
+  UseFilters,
 } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
+import { HttpExceptionFilter } from 'src/http-exception.filter';
 
 @Controller('cats')
 export class CatsController {
-  constructor(private readonly catsService: CatsService) { }
+  constructor(private readonly catsService: CatsService) {}
 
   @Post()
+  @UseFilters(HttpExceptionFilter)
   async create(@Body() createCatDto: CreateCatDto) {
     return this.catsService.create(createCatDto);
   }
