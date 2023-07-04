@@ -7,12 +7,12 @@ import {
   Param,
   Delete,
   UseFilters,
-  ParseIntPipe,
 } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
 import { HttpExceptionFilter } from 'src/http-exception.filter';
+import { ValidationPipe } from 'src/validation.pipe';
 
 @Controller('cats')
 export class CatsController {
@@ -30,7 +30,7 @@ export class CatsController {
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: string) {
+  findOne(@Param('id', ValidationPipe) id: string) {
     return this.catsService.findOne(+id);
   }
 
