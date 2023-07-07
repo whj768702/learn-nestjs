@@ -1,0 +1,25 @@
+<html>
+
+<head>
+  <script>
+    const socket = new WebSocket('ws://10.168.154.37:8085');
+    socket.onopen = function () {
+      console.log('Connected');
+      socket.send(
+        JSON.stringify({
+          event: "events",
+          data: 'test'
+        }),
+      );
+      socket.onmessage = function (data) {
+        console.log(data);
+      };
+    }
+  </script>
+</head>
+
+<body>
+  <h1>WebSocket</h1>
+</body>
+
+</html>

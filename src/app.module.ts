@@ -4,9 +4,10 @@ import { AppService } from './app.service';
 import { CatsModule } from './cats/cats.module';
 import { LoggerMiddleware } from './logger.middleware';
 import { EventSourceController } from './EventSource/eventSource.controller';
+import { WebSocketModule } from './WebSocket/websocket.module';
 
 @Module({
-  imports: [CatsModule],
+  imports: [CatsModule, WebSocketModule],
   controllers: [AppController, EventSourceController],
   providers: [AppService],
 })
