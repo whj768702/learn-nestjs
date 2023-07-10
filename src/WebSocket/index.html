@@ -2,7 +2,7 @@
 
 <head>
   <script>
-    const socket = new WebSocket('ws://10.168.154.37:8085');
+    const socket = new WebSocket('ws://10.168.154.37:8085/events');
     socket.onopen = function () {
       console.log('Connected');
       socket.send(
@@ -14,7 +14,10 @@
       socket.onmessage = function (data) {
         console.log(data);
       };
-    }
+    };
+    socket.onerror = function (error) {
+      console.log('WebSocket Error ' + error);
+    };
   </script>
 </head>
 

@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <script src="https://cdn.socket.io/4.3.2/socket.io.min.js"
+    integrity="sha384-KAZ4DtjNhLChOB/hxXuKqhMLYvx3b5MlT55xPEiNmREKRzeEm+RVPlTnAn0ajQNs"
+    crossorigin="anonymous"></script>
+  <script>
+    const socket = io('http://localhost:3000');
+    socket.on('connect', () => {
+      console.log('connected');
+      socket.emit('events', [1, 2, 3, 4]);
+      // socket.emit('identity', 0, response => {
+      //   console.log('identity', response);
+      // });
+      socket.emit('identity', 1);
+    });
+
+    socket.on('identity', data => {
+      console.log('receive identity', data);
+    });
+    socket.on('events', data => {
+      console.log('event111', data);
+    });
+    socket.on('exception', data => {
+      console.log('exception', data);
+    });
+    socket.on('disconnect', () => {
+      console.log('disconnected');
+    });
+  </script>
+</head>
+
+<body>
+</body>
+
+</html>
